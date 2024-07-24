@@ -16,7 +16,7 @@ pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 pd.set_option('display.max_colwidth', 200)
 
-
+#made self.mdl to array
 class RandomForest(BaseModel):
     def __init__(self,
                  model_name: str,
@@ -29,7 +29,7 @@ class RandomForest(BaseModel):
         self.mdl = [RandomForestClassifier(n_estimators=1000, random_state=seed, class_weight='balanced_subsample') for i in Config.TYPE_COLS] 
         self.predictions = None
         self.data_transform()
-#train here for many models
+#train here for many modele and train this model in array, test here
     def train(self, data) -> None:
         for i in range(len(self.mdl)):
             self.mdl[i].fit(data.X_train, data.y_train.iloc[:, i])
